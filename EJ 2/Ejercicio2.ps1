@@ -1,9 +1,16 @@
-﻿$prepo = 'a','ante','bajo','cabe','con','contra','de','desde','durante','en','entre','hacia','hasta','mediante','para','por','sin','so','sobre','tras','versus','vía'
-$URI = “http://www.sisop.com.ar/“
+﻿cls
+$prepo = 'a','ante','bajo','cabe','con','contra','de','desde','durante','en','entre','hacia','hasta','mediante','para','por','sin','so','sobre','tras','versus','vía'
+<#$URI = “http://www.sisop.com.ar/“
 $HTML = Invoke-WebRequest -Uri $URI
-#[HTMLFile] $html = Get-Content -Path "C:\Users\Ariel\OneDrive\Documentos\mipagina.html"
+#>
 
-$palabras = $HTML.ParsedHtml.title.Split(' ')
+cd "F:\EZEQUIEL\Sistemas Operativos\Trabajo Practico 1 - Escobar, Corno, Pereira, Buzzoni, Rossi\Powershell\EJ 2\paginas"
+$html = Get-Content pagina1.html -Raw
+$doc = New-Object -com "HTMLFILE"
+$doc.IHTMLDocument2_write($html)
+
+
+$palabras = $doc.title.Split(' ')
 echo $palabras.count
 $CantPag = 0
 $cantpal = @{}
